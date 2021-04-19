@@ -9,14 +9,14 @@ class App extends Component {
 
   componentDidMount() {
     // Fetch HTML
-    rp("https://abc.utah.gov/products/interactive-product-list/")
+    rp("http://quotes.toscrape.com/")
       .then(html => {
         let names = [];
         let $ = cheerio.load(html);
         console.log(html);
 
         //use cheerio to query id, class or tags
-        $(".padding10").each(function(i, element) {
+        $(".quote").each(function(i, element) {
           let name = $(this)
             .prepend()
             .text();
