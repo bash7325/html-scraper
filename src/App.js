@@ -9,7 +9,7 @@ class App extends Component {
 
   componentDidMount() {
     // Fetch HTML
-    rp("http://quotes.toscrape.com/")
+    rp("https://cors-anywhere.herokuapp.com/http://quotes.toscrape.com/")
       .then(html => {
         let names = [];
         let $ = cheerio.load(html);
@@ -35,7 +35,7 @@ class App extends Component {
       <div>
         <ul>
           {this.state.names.map(name => {
-            return <li key={name}>{name}</li>;
+            return <ul key={name}>{name}</ul>;
           })}
         </ul>
       </div>
