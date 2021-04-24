@@ -5,13 +5,13 @@ import cheerio from "cheerio";
 import "./App.css";
 
 class App extends Component {
-  state = { names: [] };
+  state = { scraped: [] };
 
   componentDidMount() {
     // Fetch HTML
     rp("https://cors-anywhere.herokuapp.com/http://quotes.toscrape.com/")
       .then(html => {
-        let names = [];
+        let scraped = [];
         let $ = cheerio.load(html);
         console.log(html);
 
@@ -20,13 +20,13 @@ class App extends Component {
           let name = $(this)
             .prepend()
             .text();
-          names.push(name);
+          scraped.push(name);
         });
 
-        this.setState({ names });
+        this.setState({ scraped });
       })
       .catch(function(err) {
-        console.log("crawl failed");
+        console.log("scraper failed");
       });
   }
 //render to the page the scraped html
@@ -34,7 +34,7 @@ class App extends Component {
     return (
       <div>
         <ul>
-          {this.state.names.map(name => {
+          {this.state.scraped.map(name => {
             return <ul key={name}>{name}</ul>;
           })}
         </ul>
